@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "ga4dataapi2pg"
 version = "0.1.0"
 description = "Fetch GA4 Data API reports and store to Postgres"
-authors = [{name="You"}]
+authors = [{name="Devesh Pandey"}]
 dependencies = [
   "google-analytics-data",
   "sqlalchemy",
