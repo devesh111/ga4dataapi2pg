@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ga4dataapi2pg"
+version = "0.1.0"
+description = "Fetch GA4 Data API reports and store to Postgres"
+authors = [{name="You"}]
+dependencies = [
+  "google-analytics-data",
+  "sqlalchemy",
+  "psycopg2-binary",
+  "pyyaml",
+  "typer",
+  "python-dotenv"
+]
+[project.scripts]
+ga4run = "ga4dataapi2pg.cli:app"
