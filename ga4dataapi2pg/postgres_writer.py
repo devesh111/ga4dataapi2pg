@@ -45,7 +45,7 @@ class PostgresWriter:
                 try:
                     conn.execute(text(
                         "INSERT INTO ga4_reports_raw(report_start, report_end, dimensions, metrics, row_hash) "
-                        "VALUES(:s, :e, :dims::jsonb, :mets::jsonb, :rh) ON CONFLICT (row_hash) DO NOTHING"
+                        "VALUES(:s, :e, :dims, :mets, :rh) ON CONFLICT (row_hash) DO NOTHING"
                     ), {
                         "s": start_date,
                         "e": end_date,

@@ -12,8 +12,7 @@ dependencies = [
   "sqlalchemy",
   "psycopg2-binary",
   "pyyaml",
-  "typer",
   "python-dotenv"
 ]
 [project.scripts]
-ga4run = "ga4dataapi2pg.cli:app"
+ga4run = "ga4dataapi2pg.cli:main"

@@ -3,6 +3,7 @@ from google.analytics.data_v1beta.types import RunReportRequest, DateRange, Dime
 import hashlib
 import json
 from typing import List, Dict, Any, Iterable
+import urllib.parse
 
 def row_hash(dims: Dict[str, Any], mets: Dict[str, Any]) -> str:
     s = json.dumps({'d': dims, 'm': mets}, sort_keys=True, ensure_ascii=False)
@@ -29,8 +30,8 @@ class GA4DataAPIReader:
         dim_names = [h.name for h in resp.dimension_headers]
         metric_names = [h.name for h in resp.metric_headers]
         for r in resp.rows:
-            dim_vals = {n: v.string_value for n, v in zip(dim_names, r.dimension_values)}
-            met_vals = {n: getattr(mv, 'value', mv.string_value) for n, mv in zip(metric_names, r.metric_values)}
+            dim_vals = {n: urllib.parse.unquote(v.value) for n, v in zip(dim_names, r.dimension_values)}
+            met_vals = {n: getattr(mv, 'value', mv.value) for n, mv in zip(metric_names, r.metric_values)}
             rh = row_hash(dim_vals, met_vals)
             yield {
                 "dimensions": dim_vals,
